@@ -33,9 +33,16 @@ public class TarefaController {
 		tarefas.add(tarefa); 
 	}
 	
+	@PostMapping("/criaTarefas")
+	public void criaTarefas(@RequestBody List<Tarefa> criaTarefas) {
+		criaTarefas.stream().forEach(tarefa -> tarefa.setId(contador.incrementAndGet()));
+		criaTarefas.stream().forEach(tarefa -> tarefas.add(tarefa));
+
+	}
+	
 	@GetMapping("/{id}")
-	public List<Tarefa> buscarPorId(@PathVariable("id") Long id){
-		return (List<Tarefa>) tarefas.stream().filter(elemento -> elemento.getId().equals(id)).findFirst().orElse(null);
+	public Tarefa buscarPorId(@PathVariable("id") Long id){
+		return tarefas.stream().filter(elemento -> elemento.getId().equals(id)).findFirst().orElse(null);
 		
 	}
 	
@@ -44,7 +51,7 @@ public class TarefaController {
 		
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public void deletar(@RequestBody Tarefa tarefa) {
 		tarefas.remove(tarefa);
 	}
