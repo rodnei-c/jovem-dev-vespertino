@@ -49,11 +49,12 @@ public class TarefaController {
 	@PutMapping("/{id}")
 	public void atualizar(@PathVariable("id") Long id) {
 		
+		
 	}
 	
 	@DeleteMapping("/{id}")
 	public void deletar(@RequestBody Tarefa tarefa) {
-		tarefas.remove(tarefa);
+		tarefas.removeIf(elemento -> elemento.getId().equals(tarefa.getId()));
 	}
 	
 }
