@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,47 +15,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jv.triersistemas.primeiro_projeto.Tarefa;
+import jv.triersistemas.primeiro_projeto.dto.TarefaDto;
+import jv.triersistemas.primeiro_projeto.service.TarefaService;
+import jv.triersistemas.primeiro_projeto.service.impl.TarefaServiceImpl;
 
 @RestController
 @RequestMapping("/tarefas")
 public class TarefaController {
 
-	private static List<Tarefa> tarefas = new ArrayList<>();
-	private AtomicLong contador =  new AtomicLong();
+	@Autowired
+	private TarefaService tarefaService;
 	
 	@GetMapping
-	public List<Tarefa> listarTarefas(){
-		return tarefas;
+	public List<TarefaDto> listarTarefas(){
+		return tarefaService.getTarefas();
 	}
 	
-	@PostMapping
-	public void criaTarefa(@RequestBody Tarefa tarefa) {
-		tarefa.setId(contador.incrementAndGet());
-		tarefas.add(tarefa); 
-	}
 	
 	@PostMapping("/criaTarefas")
-	public void criaTarefas(@RequestBody List<Tarefa> criaTarefas) {
-		criaTarefas.stream().forEach(tarefa -> tarefa.setId(contador.incrementAndGet()));
-		criaTarefas.stream().forEach(tarefa -> tarefas.add(tarefa));
+	public void criaTarefas(@RequestBody TarefaDto criaTarefas) {
+		tarefaService.criaTarefas(criaTarefas);
 
 	}
 	
 	@GetMapping("/{id}")
-	public Tarefa buscarPorId(@PathVariable("id") Long id){
-		return tarefas.stream().filter(elemento -> elemento.getId().equals(id)).findFirst().orElse(null);
+	public TarefaDto buscarPorId(@PathVariable("id") Long id){
+		return tarefaService.findById(id);
 		
 	}
 	
-	@PutMapping("/{id}")
-	public void atualizar(@PathVariable("id") Long id) {
-		
-		
-	}
+//	@PutMapping("/{id}")
+//	public TarefaDto atualizar(@PathVariable("id") Long id, TarefaDto tarefaAtualizada) {
+//		return tarefaService.updateTarefa(id, tarefaAtualizada);
+//		
+//	}
 	
 	@DeleteMapping("/{id}")
-	public void deletar(@RequestBody Tarefa tarefa) {
-		tarefas.removeIf(elemento -> elemento.getId().equals(tarefa.getId()));
+	public void deletar(@PathVariable Long id) {
+		tarefaService.deleteTarefas(id);
 	}
 	
 }
