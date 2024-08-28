@@ -2,6 +2,7 @@ package jv.triersistemas.primeiro_projeto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,22 +34,22 @@ public class TarefaController {
 	
 	
 	@PostMapping("/criaTarefas")
-	public void criaTarefas(@RequestBody TarefaDto criaTarefas) {
-		tarefaService.criaTarefas(criaTarefas);
+	public TarefaDto criaTarefas(@RequestBody TarefaDto criaTarefas) {
+		return tarefaService.criaTarefas(criaTarefas);
 
 	}
 	
 	@GetMapping("/{id}")
-	public TarefaDto buscarPorId(@PathVariable("id") Long id){
-		return tarefaService.findById(id);
-		
+	public Optional<TarefaDto> buscarPorId(@PathVariable("id") Long id){
+		Optional<TarefaDto> tarefa = tarefaService.findById(id);
+		return tarefa;	
 	}
 	
-//	@PutMapping("/{id}")
-//	public TarefaDto atualizar(@PathVariable("id") Long id, TarefaDto tarefaAtualizada) {
-//		return tarefaService.updateTarefa(id, tarefaAtualizada);
-//		
-//	}
+	@PutMapping("/{id}")
+	public TarefaDto atualizar(@PathVariable("id") Long id,@RequestBody TarefaDto tarefaAtualizada) {
+		return tarefaService.updateTarefa(id, tarefaAtualizada);
+		
+	}
 	
 	@DeleteMapping("/{id}")
 	public void deletar(@PathVariable Long id) {

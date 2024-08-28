@@ -13,6 +13,8 @@ public class ApostaDto {
 
 	private double valorAposta;
 	private int qtdDados;
+//	private int somaDados;
+//	private double percentual;
 
 	
 }

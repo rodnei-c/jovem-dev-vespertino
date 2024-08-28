@@ -30,10 +30,14 @@ public class ApostaController {
 	}
 	
 	@GetMapping
-	List<ApostaDto> iCantStopWinning(){
+	public List<ApostaDto> iCantStopWinning(){
 		return apostaService.iCantStopWinning();
 	}
 	
+//	@GetMapping
+//	public int somarDosDados() {
+//		return apostaService.somarDados();
+//	}
 	
-	
+
 }

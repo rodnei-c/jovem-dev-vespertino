@@ -9,6 +9,8 @@ public interface ApostaService {
 	void letsGoGambling(int qtdDados, double valorAposta);
 	
 	List<ApostaDto> iCantStopWinning();
+		
+	int somarDados();
 	
 	
 }

@@ -24,8 +24,9 @@ public class ApostaServiceImpl implements ApostaService{
 			for(int i = 0; i < qtdDados; i++) {
 				int valorDados = new Random().nextInt(1, 6);
 				dadosJogados.add(valorDados);
-				percentual(valorAposta);
 			}
+			apostasFeitas.add(new ApostaDto(valorAposta, qtdDados));
+			percentual(valorAposta);
 		} else {
 			erro();
 		}	
@@ -35,6 +36,7 @@ public class ApostaServiceImpl implements ApostaService{
 		throw new IllegalArgumentException();
 	}
 	
+	@Override
 	public int somarDados() {
 		int total = 0;
 		for (Integer result : dadosJogados) {		
@@ -59,11 +61,22 @@ public class ApostaServiceImpl implements ApostaService{
 		}	
 		return false;		
 	}
+	
+//	@Override
+//	public void criaAposta(ApostaDto aposta) {
+//		apostasFeitas.add(aposta);
+//	}
 
 	@Override
 	public List<ApostaDto> iCantStopWinning() {
 		return apostasFeitas;
 	}
+
+//	@Override
+//	public void criaAposta(ApostaDto aposta) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	
 

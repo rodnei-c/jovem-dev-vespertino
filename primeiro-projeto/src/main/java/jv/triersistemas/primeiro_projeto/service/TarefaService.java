@@ -13,13 +13,11 @@ public interface TarefaService {
 
 	public List<TarefaDto> getTarefas();
 	
-	public TarefaDto findById(Long id);
+	public Optional<TarefaDto> findById(Long id);
 	
 	public void deleteTarefas(Long id);
 	
-	public void criaTarefa(TarefaDto tarefa);
-	
-	public void criaTarefas(TarefaDto criaTarefas);
+	public TarefaDto criaTarefas(TarefaDto criaTarefas);
 	
 	public TarefaDto updateTarefa(Long id, TarefaDto tarefaAtualizada);
 
