@@ -3,10 +3,7 @@ package jv.triersistemas.primeiro_projeto.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import jv.triersistemas.primeiro_projeto.Tarefa;
+import jv.triersistemas.primeiro_projeto.dto.CategoriaDto;
 import jv.triersistemas.primeiro_projeto.dto.TarefaDto;
 
 public interface TarefaService {
@@ -17,7 +14,7 @@ public interface TarefaService {
 	
 	public void deleteTarefas(Long id);
 	
-	public TarefaDto criaTarefas(TarefaDto criaTarefas);
+	public TarefaDto criaTarefas(TarefaDto criaTarefas, CategoriaDto categoria);
 	
 	public TarefaDto updateTarefa(Long id, TarefaDto tarefaAtualizada);
 

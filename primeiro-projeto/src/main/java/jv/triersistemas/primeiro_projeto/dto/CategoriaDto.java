@@ -1,30 +1,35 @@
 package jv.triersistemas.primeiro_projeto.dto;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jv.triersistemas.primeiro_projeto.entity.CategoriaEntity;
 import jv.triersistemas.primeiro_projeto.entity.TarefaEntity;
+import jv.triersistemas.primeiro_projeto.enuns.PrioridadeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-public class TarefaDto {
-	private Long id;
-	private String titulo;
+@Data
+public class CategoriaDto {
+
+	private int id;
+	private String nome;
 	private String descricao;
-	private boolean completa;
-	private CategoriaDto categoria;
+	private PrioridadeEnum prioridade;
+//	private List<TarefaEntity> tarefas;
 	
-	public TarefaDto(TarefaEntity entity) {
+	public CategoriaDto(CategoriaEntity entity) {
 		this.id = entity.getId();
-		this.titulo = entity.getTitulo();
+		this.nome = entity.getNome();
 		this.descricao = entity.getDescricao();
-		this.completa = entity.isCompleta();
-		this.categoria = new CategoriaDto(entity.getCategoria());
+		this.prioridade = entity.getPrioridade();
+//		this.tarefas = entity.getTarefas();
+		
 	}
+	
 }

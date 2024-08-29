@@ -2,6 +2,7 @@ package jv.triersistemas.primeiro_projeto.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,42 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 import jv.triersistemas.primeiro_projeto.dto.CategoriaDto;
 import jv.triersistemas.primeiro_projeto.dto.TarefaDto;
 import jv.triersistemas.primeiro_projeto.service.CategoriaService;
-import jv.triersistemas.primeiro_projeto.service.TarefaService;
 
 @RestController
-@RequestMapping("/tarefas")
-public class TarefaController {
+@RequestMapping("/categorias")
+public class CategoriaController {
 
 	@Autowired
-	private TarefaService tarefaService;
-		
+	private CategoriaService categoriaService;
+	
 	@GetMapping
-	public List<TarefaDto> listarTarefas(){
-		return tarefaService.getTarefas();
+	public List<CategoriaDto> listarCategorias(){
+		return categoriaService.getCategorias();
 	}
 	
-	
-	@PostMapping("/criaTarefas/{id}")
-	public TarefaDto criaTarefas(@RequestBody TarefaDto criaTarefas,@PathVariable CategoriaDto categoria) {
-		return tarefaService.criaTarefas(criaTarefas);
+	@PostMapping("/criaCategoria")
+	public CategoriaDto criaCategoria(@RequestBody CategoriaDto criaCategoria) {
+		return categoriaService.criaCategoria(criaCategoria);
 
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<TarefaDto> buscarPorId(@PathVariable("id") Long id){
-		Optional<TarefaDto> tarefa = tarefaService.findById(id);
-		return tarefa;	
+	public Optional<CategoriaDto> buscarPorId(@PathVariable("id") Integer id){
+		Optional<CategoriaDto> categoria = categoriaService.findById(id);
+		return categoria;	
 	}
 	
 	@PutMapping("/{id}")
-	public TarefaDto atualizar(@PathVariable("id") Long id,@RequestBody TarefaDto tarefaAtualizada) {
-		return tarefaService.updateTarefa(id, tarefaAtualizada);
+	public CategoriaDto atualizar(@PathVariable("id") Integer id,@RequestBody CategoriaDto categoriaAtualizada) {
+		return categoriaService.updateCategoria(id, categoriaAtualizada);
 		
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deletar(@PathVariable Long id) {
-		tarefaService.deleteTarefas(id);
+	public void deletar(@PathVariable Integer id) {
+		categoriaService.deleteCategoria(id);
 	}
 	
 }
