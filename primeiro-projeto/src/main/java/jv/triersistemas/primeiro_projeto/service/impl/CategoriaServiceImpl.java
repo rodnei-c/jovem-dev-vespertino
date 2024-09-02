@@ -24,13 +24,13 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	public Optional<CategoriaDto> findById(Integer id) {
+	public Optional<CategoriaDto> findById(Long id) {
 		Optional<CategoriaEntity> buscaId = repository.findById(id);
 		return buscaId.map(CategoriaDto::new);
 	}
 
 	@Override
-	public void deleteCategoria(Integer id) {
+	public void deleteCategoria(Long id) {
 		repository.deleteById(id);
 		
 	}
@@ -43,7 +43,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	public CategoriaDto updateCategoria(Integer id, CategoriaDto categoriaAtualizada) {
+	public CategoriaDto updateCategoria(Long id, CategoriaDto categoriaAtualizada) {
 		Optional<CategoriaEntity> categoriaEntity = repository.findById(id);
         if (categoriaEntity.isPresent()) {
         	categoriaEntity.get().atualizaCategoria(categoriaAtualizada);
@@ -51,6 +51,11 @@ public class CategoriaServiceImpl implements CategoriaService{
         	return new CategoriaDto(entidadePersistida);
         }
         return null;
+	}
+	
+	@Override
+	public CategoriaEntity buscaId(Long id) {
+		return repository.getById(id);
 	}
 
 	

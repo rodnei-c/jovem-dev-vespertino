@@ -14,7 +14,7 @@ public interface TarefaService {
 	
 	public void deleteTarefas(Long id);
 	
-	public TarefaDto criaTarefas(TarefaDto criaTarefas, CategoriaDto categoria);
+	public TarefaDto criaTarefas(TarefaDto criaTarefas);
 	
 	public TarefaDto updateTarefa(Long id, TarefaDto tarefaAtualizada);
 

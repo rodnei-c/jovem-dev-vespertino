@@ -36,19 +36,19 @@ public class CategoriaController {
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<CategoriaDto> buscarPorId(@PathVariable("id") Integer id){
+	public Optional<CategoriaDto> buscarPorId(@PathVariable("id") Long id){
 		Optional<CategoriaDto> categoria = categoriaService.findById(id);
 		return categoria;	
 	}
 	
 	@PutMapping("/{id}")
-	public CategoriaDto atualizar(@PathVariable("id") Integer id,@RequestBody CategoriaDto categoriaAtualizada) {
+	public CategoriaDto atualizar(@PathVariable("id") Long id,@RequestBody CategoriaDto categoriaAtualizada) {
 		return categoriaService.updateCategoria(id, categoriaAtualizada);
 		
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deletar(@PathVariable Integer id) {
+	public void deletar(@PathVariable Long id) {
 		categoriaService.deleteCategoria(id);
 	}
 	

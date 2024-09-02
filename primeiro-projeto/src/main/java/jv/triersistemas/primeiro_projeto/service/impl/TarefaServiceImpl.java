@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jv.triersistemas.primeiro_projeto.dto.TarefaDto;
+import jv.triersistemas.primeiro_projeto.entity.CategoriaEntity;
 import jv.triersistemas.primeiro_projeto.entity.TarefaEntity;
 import jv.triersistemas.primeiro_projeto.repository.TarefaRepository;
 import jv.triersistemas.primeiro_projeto.service.CategoriaService;
@@ -47,12 +48,17 @@ public class TarefaServiceImpl implements TarefaService {
 	@Override
 	public TarefaDto updateTarefa(Long id, TarefaDto tarefaAtualizada) {
 		Optional<TarefaEntity> tarefaEntity = repository.findById(id);
+		CategoriaEntity categoriaEntity = verificaCategoria(tarefaAtualizada.getCategoria());
         if (tarefaEntity.isPresent()) {
-        	tarefaEntity.get().atualizaTarefa(tarefaAtualizada);
+        	tarefaEntity.get().atualizaTarefa(tarefaAtualizada, categoriaEntity);
         	var entidadePersistida = repository.save(tarefaEntity.get());
         	return new TarefaDto(entidadePersistida);
         }
         return null;
+	}
+	
+	private CategoriaEntity verificaCategoria(Long id) {
+		return categoriaService.buscaId(id);
 	}
 
 }

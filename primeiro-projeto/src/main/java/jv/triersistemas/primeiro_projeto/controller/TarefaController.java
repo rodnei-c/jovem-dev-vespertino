@@ -31,7 +31,7 @@ public class TarefaController {
 	
 	
 	@PostMapping("/criaTarefas/{id}")
-	public TarefaDto criaTarefas(@RequestBody TarefaDto criaTarefas,@PathVariable CategoriaDto categoria) {
+	public TarefaDto criaTarefas(@RequestBody TarefaDto criaTarefas) {
 		return tarefaService.criaTarefas(criaTarefas);
 
 	}

@@ -41,11 +41,11 @@ public class TarefaEntity {
 		
 	}
 	
-	public TarefaEntity atualizaTarefa(TarefaDto dto) {
+	public TarefaEntity atualizaTarefa(TarefaDto dto, CategoriaEntity entity) {
     	this.titulo = dto.getTitulo();
     	this.descricao = dto.getDescricao();
     	this.completa = dto.isCompleta();
-    	this.categoria = new CategoriaEntity(dto.getCategoria());
+    	this.categoria = entity;
     	return this;
     }
 }

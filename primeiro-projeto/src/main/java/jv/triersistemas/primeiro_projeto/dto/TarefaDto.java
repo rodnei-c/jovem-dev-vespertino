@@ -18,13 +18,13 @@ public class TarefaDto {
 	private String titulo;
 	private String descricao;
 	private boolean completa;
-	private CategoriaDto categoria;
+	private Long categoria;
 	
 	public TarefaDto(TarefaEntity entity) {
 		this.id = entity.getId();
 		this.titulo = entity.getTitulo();
 		this.descricao = entity.getDescricao();
 		this.completa = entity.isCompleta();
-		this.categoria = new CategoriaDto(entity.getCategoria());
+		this.categoria = entity.getCategoria().getId();
 	}
 }

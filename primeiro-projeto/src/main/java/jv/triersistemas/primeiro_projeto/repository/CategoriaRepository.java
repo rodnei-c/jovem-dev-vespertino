@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import jv.triersistemas.primeiro_projeto.entity.CategoriaEntity;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<CategoriaEntity, Integer>{
+public interface CategoriaRepository extends JpaRepository<CategoriaEntity, Long>{
 
 }

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class CategoriaDto {
 
-	private int id;
+	private Long id;
 	private String nome;
 	private String descricao;
 	private PrioridadeEnum prioridade;
